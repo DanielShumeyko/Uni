@@ -18,7 +18,9 @@ class LinearModel:
     # runs model calculating y values then plots
     def runModel(self):
         self.y = [(self.a1 * t ** self.q + self.a2 * t ** self.b) for t in self.t_range]
-        sns.set()
-        plt.bar(self.t_range, self.y, color='green')
+        axes = plt.axes()
+        axes.grid()
+        plt.bar(self.t_range, self.y, color='green', zorder=3)
+        plt.plot(self.t_range, self.y, color='red', zorder=4)
         plt.show()
 
