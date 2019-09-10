@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-class LinearModel:
+class DynamicModel:
     def __init__(self, a1, a2, b, q, t):
         self.changeData(a1, a2, b, q, t)
     

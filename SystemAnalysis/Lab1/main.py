@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, QVB
 from PyQt5.QtWidgets import QPushButton, QLineEdit, QLabel, QMenuBar, QStatusBar
 import PyQt5.QtWidgets as qtw
 
-from model import LinearModel
+from model import DynamicModel
 
 class MenuToolBar(QDockWidget):
     def __init__(self, MainWin):
@@ -178,7 +178,7 @@ class MainWindow(QMainWindow):
         msg.exec_()
     
     def LoadModel(self, a1, a2, b, q, t):
-        mdl = LinearModel(a1, a2, b, q, t)
+        mdl = DynamicModel(a1, a2, b, q, t)
         mdl.printData()
         mdl.runModel()
         
