@@ -13,14 +13,22 @@ class LinearModel:
         self.b = b
         self.q = q
         self.to = t
-        self.t_range = np.arange(0, 10, self.to)
+        self.t_range = np.arange(0, 10 + self.to, self.to)
+        self.A = np.matrix([[0, 1, 0], [0, 0, 1], [-1, -self.a1, -self.a2]])
+        self.B = np.matrix([[0, 0, self.b]])
+        self.C = np.array([1, 0, 0])
 
     # runs model calculating y values then plots
     def runModel(self):
         self.y = [(self.a1 * t ** self.q + self.a2 * t ** self.b) for t in self.t_range]
         axes = plt.axes()
         axes.grid()
-        plt.bar(self.t_range, self.y, color='green', zorder=3)
-        plt.plot(self.t_range, self.y, color='red', zorder=4)
+        plt.bar(self.t_range, self.y, color='olive', zorder=3)
         plt.show()
 
+    # for debuging and testing purposes
+    def printData(self):
+        print(self.A)
+        print(self.B)
+        print(self.C)
+        print(self.t_range)

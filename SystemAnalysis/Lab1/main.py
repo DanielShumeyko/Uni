@@ -179,6 +179,7 @@ class MainWindow(QMainWindow):
     
     def LoadModel(self, a1, a2, b, q, t):
         mdl = LinearModel(a1, a2, b, q, t)
+        mdl.printData()
         mdl.runModel()
         
 if __name__ == "__main__":
