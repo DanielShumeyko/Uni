@@ -1,10 +1,8 @@
 from sys import exit as sysExit
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui  import QFont, QCursor
+from PyQt5.QtGui import QFont, QCursor
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QDockWidget, QStyleFactory, QMessageBox
-from PyQt5.QtWidgets import QPushButton, QLineEdit, QLabel, QMenuBar, QStatusBar
-import PyQt5.QtWidgets as qtw
-
+from PyQt5.QtWidgets import QPushButton, QLineEdit, QLabel
 from model import DynamicModel
 
 class MenuToolBar(QDockWidget):
