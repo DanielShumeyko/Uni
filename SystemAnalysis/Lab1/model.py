@@ -31,3 +31,4 @@ class DynamicModel:
         print(self.B)
         print(self.C)
         print(self.t_range)
+/
