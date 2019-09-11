@@ -25,10 +25,17 @@ class DynamicModel:
         plt.bar(self.t_range, self.y, color='olive', zorder=3)
         plt.show()
 
+    # calculates Phi to use in main formula
+    def Phi(self):
+        pass
+
+    # calculates Gamma to use in main formula, needs Phi
+    def Gamma(self, phi):
+        pass
+
     # for debuging and testing purposes
     def printData(self):
         print(self.A)
         print(self.B)
         print(self.C)
         print(self.t_range)
-/
