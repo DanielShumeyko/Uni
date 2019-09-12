@@ -73,6 +73,22 @@ class CenterPanel(QWidget):
         VBox5.addWidget(self.label_t)
         VBox5.addWidget(self.input_t)
 
+        self.label_ko = QLabel(self)
+        self.label_ko.setText('                    ko')
+        self.label_ko.setFont(QFont("Times", 8, QFont.Bold))
+        self.input_ko = QLineEdit(self)
+        VBox6 = QVBoxLayout()
+        VBox6.addWidget(self.label_ko)
+        VBox6.addWidget(self.input_ko)
+
+        self.label_xo = QLabel(self)
+        self.label_xo.setText('                    Xo')
+        self.label_xo.setFont(QFont("Times", 8, QFont.Bold))
+        self.input_xo = QLineEdit(self)
+        VBox7 = QVBoxLayout()
+        VBox7.addWidget(self.label_xo)
+        VBox7.addWidget(self.input_xo)
+
     # Horizontal Layout 2 for all the inputs
         HBox2 = QHBoxLayout()
         HBox2.addLayout(VBox1)
@@ -80,6 +96,8 @@ class CenterPanel(QWidget):
         HBox2.addLayout(VBox3)
         HBox2.addLayout(VBox4)
         HBox2.addLayout(VBox5)
+        HBox2.addLayout(VBox6)
+        HBox2.addLayout(VBox7)
 
     # Main Layout
         self.confirm = QPushButton()
@@ -126,13 +144,16 @@ class MainWindow(QMainWindow):
         b = int(self.CenterPane.input_b.text())
         q = int(self.CenterPane.input_q.text())
         t = float(self.CenterPane.input_t.text())
+        ko = int(self.CenterPane.input_ko.text())
+        xo = int(self.CenterPane.input_xo.text())
 
         self.CenterPane.input_a1.clear()
         self.CenterPane.input_a2.clear()
         self.CenterPane.input_b.clear()
         self.CenterPane.input_q.clear()
         self.CenterPane.input_t.clear()
-
+        self.CenterPane.input_ko.clear()
+        self.CenterPane.input_xo.clear()
         ABOUNDLOW = 1
         ABOUNDHIGH = 10
         QBOUNDLOW = 1
@@ -149,7 +170,7 @@ class MainWindow(QMainWindow):
         elif q > QBOUNDHIGH or q < QBOUNDLOW:
             self.msgOOB('q')
         else:
-            self.LoadModel(a1, a2, b, q, t)
+            self.LoadModel(a1, a2, b, q, t, ko, xo)
 
     def msgOOB(self, error=''):
 
@@ -175,8 +196,8 @@ class MainWindow(QMainWindow):
             
         msg.exec_()
     
-    def LoadModel(self, a1, a2, b, q, t):
-        mdl = DynamicModel(a1, a2, b, q, t)
+    def LoadModel(self, a1, a2, b, q, t, ko, xo):
+        mdl = DynamicModel(a1, a2, b, q, t, ko, xo)
         mdl.printData()
         mdl.runModel()
         

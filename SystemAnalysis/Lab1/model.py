@@ -2,16 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class DynamicModel:
-    def __init__(self, a1, a2, b, q, t):
-        self.changeData(a1, a2, b, q, t)
+    def __init__(self, a1, a2, b, q, t, ko, xo):
+        self.changeData(a1, a2, b, q, t, ko, xo)
     
     # just loads new data into the model
-    def changeData(self, a1, a2, b, q, t):
+    def changeData(self, a1, a2, b, q, t, ko, xo):
         self.a1 = a1
         self.a2 = a2
         self.b = b
         self.q = q
         self.to = t
+        self.ko = ko
+        self.xo = xo
         self.t_range = np.arange(0, 10 + self.to, self.to)
         self.A = np.matrix([[0, 1, 0], [0, 0, 1], [-1, -self.a1, -self.a2]])
         self.B = np.matrix([[0, 0, self.b]])
