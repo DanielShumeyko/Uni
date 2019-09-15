@@ -26,6 +26,11 @@ class DynamicModel:
         y_range = self.generateY()
         y = y_range
         x = self.t_range
+        axes = plt.axes()
+        axes.set_xlim([-0.2, 10.2])
+        axes.set_xticks(np.arange(0, 10.5, 0.5))
+        plt.xlabel('t - time')
+        plt.ylabel('y(t) - output process')
         plt.scatter(x, y)
         plt.show()
 
