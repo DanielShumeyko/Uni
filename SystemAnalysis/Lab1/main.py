@@ -5,23 +5,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, QVB
 from PyQt5.QtWidgets import QPushButton, QLineEdit, QLabel
 from model import DynamicModel
 
-class MenuToolBar(QDockWidget):
-    def __init__(self, MainWin):
-        QDockWidget.__init__(self)
-        self.MainWin = MainWin
-        self.MainMenu = MainWin.menuBar()
-
-        # ******* Create the Help Menu *******
-        self.HelpMenu  = self.MainMenu.addMenu('Help')
 
 class CenterPanel(QWidget):
     def __init__(self, parent):
         QWidget.__init__(self)
 
-    # General Font Object for a couple of Buttons
-        btnFont = QFont()
-        btnFont.setFamily('Arial')
-        btnFont.setItalic(True)
     # Horizontal Box 1 containing instruction label.
         self.instruction = QLabel(self)
         self.instruction.setFont(QFont("Times", 8, QFont.Bold))
@@ -124,19 +112,7 @@ class MainWindow(QMainWindow):
         self.CenterPane = CenterPanel(self)
 
         self.setCentralWidget(self.CenterPane)
-        self.MenuBar = MenuToolBar(self)
-
-        self.SetStatusBar(self)
         self.setStyle(QStyleFactory.create('Cleanlooks'))
-
-    def SetStatusBar(self, parent):
-        StatusMsg = ''
-        parent.StatBar = parent.statusBar()
-
-        if len(StatusMsg) < 1:
-            StatusMsg = 'Ready'
-
-        parent.StatBar.showMessage(StatusMsg)
 
     def inputParams(self):
         a1 = int(self.CenterPane.input_a1.text())
