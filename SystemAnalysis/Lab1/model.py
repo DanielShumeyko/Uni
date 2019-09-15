@@ -26,7 +26,7 @@ class DynamicModel:
         axes.grid()
         y = y_range
         x = self.t_range
-        plt.plot(x, y, color='olive', zorder=3)
+        plt.scatter(x, y, color='olive', zorder=3)
         plt.show()
 
     def generateY(self):
@@ -57,7 +57,7 @@ class DynamicModel:
 
     # calculates Phi to use in main formula
     def Phi(self):
-        phi = np.matrix([[1., 1., 1.], [1., 1., 1.], [1., 1., 1.]])
+        phi = np.matrix([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
         q = self.q
         for i in range(q):
             # ((self.A*self.to)**(i+1))/np.math.factorial((i+1))
@@ -66,7 +66,7 @@ class DynamicModel:
 
     # calculates Gamma to use in main formula, needs Phi
     def Gamma(self, phi):
-        I = np.matrix([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+        I = np.matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
         a =  (phi - I)*self.A**(-1)
         a1 = np.squeeze(np.array(a))
         b = np.squeeze(np.array(self.B))
