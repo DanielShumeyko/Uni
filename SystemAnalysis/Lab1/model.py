@@ -21,17 +21,17 @@ class DynamicModel:
 
     # runs model calculating y values then plots
     def runModel(self):
-        y = self.generateY()
+        y_range = self.generateY()
         axes = plt.axes()
         axes.grid()
-        print(len(y))
-        print(len(self.t_range))
-        plt.plot(self.t_range, y, color='olive', zorder=3)
+        y = y_range
+        x = self.t_range
+        plt.plot(x, y, color='olive', zorder=3)
         plt.show()
 
     def generateY(self):
         phi = np.squeeze(np.array(self.Phi()))
-        gamma = np.squeeze(self.Gamma(phi))
+        gamma = np.squeeze(self.Gamma(self.Phi()))
         y = []
         k = len(self.t_range)
         u = 1
