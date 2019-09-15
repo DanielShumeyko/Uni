@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 class DynamicModel:
     def __init__(self, a1, a2, b, q, t, ko, xo):
@@ -21,12 +22,11 @@ class DynamicModel:
 
     # runs model calculating y values then plots
     def runModel(self):
+        sns.set()
         y_range = self.generateY()
-        axes = plt.axes()
-        axes.grid()
         y = y_range
         x = self.t_range
-        plt.scatter(x, y, color='olive', zorder=3)
+        plt.scatter(x, y)
         plt.show()
 
     def generateY(self):
