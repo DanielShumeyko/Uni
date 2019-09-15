@@ -25,7 +25,7 @@ class CenterPanel(QWidget):
     # Horizontal Box 1 containing instruction label.
         self.instruction = QLabel(self)
         self.instruction.setFont(QFont("Times", 8, QFont.Bold))
-        self.instruction.setText('Please set the parameters below. If you have trouble click the \'Help\' tab above.')     
+        self.instruction.setText('Please set the parameters below.')     
 
 
         HBox1 = QHBoxLayout()
