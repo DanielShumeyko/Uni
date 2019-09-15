@@ -50,7 +50,6 @@ class DynamicModel:
             if ucounter >= self.ko:
                 u *= -1
                 ucounter = 0
-        print(y)
         return y
             
         
