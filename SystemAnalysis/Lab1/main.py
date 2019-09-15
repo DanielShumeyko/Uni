@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
         q = int(self.CenterPane.input_q.text())
         t = float(self.CenterPane.input_t.text())
         ko = int(self.CenterPane.input_ko.text())
-        xo = int(self.CenterPane.input_xo.text())
+        xo = float(self.CenterPane.input_xo.text())
 
         self.CenterPane.input_a1.clear()
         self.CenterPane.input_a2.clear()

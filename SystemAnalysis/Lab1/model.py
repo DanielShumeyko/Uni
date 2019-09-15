@@ -38,17 +38,19 @@ class DynamicModel:
         ucounter = 0
         x = np.array([])
         x_prev = np.squeeze(self.xo)
-
+        print('x dot phi ', x_prev.dot(phi))
         y.append(x_prev[0])
 
-        for i in range(1, k):
-            x = phi.dot(x_prev) + gamma*u
-            y.append(x[0])
+        for _ in range(1, k):
+            x = x_prev.dot(phi) + gamma*u
+            print(x)
+            y.append(x.dot(self.C))
             x_prev = x
             ucounter += 1
             if ucounter >= self.ko:
                 u *= -1
                 ucounter = 0
+        print(y)
         return y
             
         
