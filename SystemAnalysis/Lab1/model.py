@@ -22,7 +22,7 @@ class DynamicModel:
         self.B = np.array([[0, 0, self.b]])
         self.C = np.array([1, 0, 0])
 
-    # runs model calculating y values then plots
+    # Runs algorithm, plots results
     def runModel(self):
         sns.set()
         self.generateY()
@@ -39,6 +39,7 @@ class DynamicModel:
         plt.legend(['x1', 'x2', 'x3'], loc=4)
         plt.show()
 
+    # Algorithm core, loads three y arrays into class
     def generateY(self):
         phi = np.squeeze(np.array(self.Phi()))
         gamma = np.squeeze(self.Gamma(self.Phi()))
@@ -79,7 +80,6 @@ class DynamicModel:
         phi = np.matrix([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
         q = self.q
         for i in range(q):
-            # ((self.A*self.to)**(i+1))/np.math.factorial((i+1))
             phi += ((self.A*self.to)**(i+1))/np.math.factorial((i+1))
         return phi
 
