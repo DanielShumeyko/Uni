@@ -50,7 +50,6 @@ class DynamicModel:
         ucounter = 0
         x = np.array([])
         x_prev = np.squeeze(self.xo)
-        print('x dot phi ', x_prev.dot(phi))
         y.append(x_prev[0])
         y2.append(x_prev[1])
         y3.append(x_prev[2])
