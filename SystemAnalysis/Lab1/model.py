@@ -1,3 +1,5 @@
+# Daniel Shumeyko, PS-3
+
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -20,11 +22,11 @@ class DynamicModel:
         self.B = np.array([[0, 0, self.b]])
         self.C = np.array([1, 0, 0])
 
-    # runs model calculating y values then plots
+    # Runs algorithm, plots results
     def runModel(self):
         sns.set()
-        y_range = self.generateY()
-        y = y_range
+        self.generateY()
+        y = self.y1
         x = self.t_range
         axes = plt.axes()
         axes.set_xlim([-0.2, 10.2])
@@ -32,30 +34,44 @@ class DynamicModel:
         plt.xlabel('t - time')
         plt.ylabel('y(t) - output process')
         plt.scatter(x, y)
+        plt.scatter(x, self.y2, c='red')
+        plt.scatter(x, self.y3, c='green')
+        plt.legend(['x1', 'x2', 'x3'], loc=4)
         plt.show()
 
+    # Algorithm core, loads three y arrays into class
     def generateY(self):
         phi = np.squeeze(np.array(self.Phi()))
         gamma = np.squeeze(self.Gamma(self.Phi()))
         y = []
+        y2 = []
+        y3 = []
         k = len(self.t_range)
         u = 1
         ucounter = 0
         x = np.array([])
         x_prev = np.squeeze(self.xo)
-        print('x dot phi ', x_prev.dot(phi))
         y.append(x_prev[0])
+        y2.append(x_prev[1])
+        y3.append(x_prev[2])
 
         for _ in range(1, k):
             x = x_prev.dot(phi) + gamma*u
             print(x)
             y.append(x.dot(self.C))
+            y2.append(x[1])
+            y3.append(x[2])
             x_prev = x
             ucounter += 1
-            if ucounter >= self.ko:
-                u *= -1
-                ucounter = 0
-        return y
+            if self.ko > 0:
+                if ucounter >= self.ko:
+                    u *= -1
+                    ucounter = 0
+
+        self.y1 = y
+        self.y2 = y2
+        self.y3 = y3
+
             
         
 
@@ -64,7 +80,6 @@ class DynamicModel:
         phi = np.matrix([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
         q = self.q
         for i in range(q):
-            # ((self.A*self.to)**(i+1))/np.math.factorial((i+1))
             phi += ((self.A*self.to)**(i+1))/np.math.factorial((i+1))
         return phi
 
@@ -86,3 +101,5 @@ class DynamicModel:
         phi = self.Phi()
         print('Phi ', phi)
         print('Gamma ', self.Gamma(phi))
+
+# Daniel Shumeyko, PS-3

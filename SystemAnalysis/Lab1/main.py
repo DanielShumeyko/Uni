@@ -1,3 +1,5 @@
+# Daniel Shumeyko, PS-3
+
 from sys import exit as sysExit
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QCursor
@@ -182,3 +184,5 @@ if __name__ == "__main__":
     MainGUI = MainWindow()
     MainGUI.show()
     sysExit(MainThread.exec_())
+
+# Daniel Shumeyko, PS-3
