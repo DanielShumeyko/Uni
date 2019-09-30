@@ -26,7 +26,7 @@ class CenterPanel(QWidget):
 
         self.label_eps = QLabel(self)
         self.label_eps.setFont(QFont("Times", 12, QFont.AnyStyle))
-        self.label_eps.setText('Epsilon (precision with which we calculate the answer) is ' + str(epsilon))
+        self.label_eps.setText('Epsilon (precision) is ' + str(epsilon))
         self.label_eps.setAlignment(Qt.AlignCenter)
 
         VBox1 = QVBoxLayout()
