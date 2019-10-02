@@ -5,6 +5,8 @@ def nlf(x):
     return x**3 + np.sin(x) - 12*x + 1
 
 class Modified_Newton:
-    pass
+    def __init__(self, eps):
+        self.eps = eps
 class Dichotomy:
-    pass
+    def __init__(self, eps):
+        self.eps = eps
