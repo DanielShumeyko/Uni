@@ -86,13 +86,14 @@ class MainWindow(QMainWindow):
         x, log = mdl.run()
         self.CenterPane.outp_area.append(log)
         self.resize(500, 549)
+        self.resize(500, 550)
 
     def runNewtons(self):
         mdl = Modified_Newton(epsilon, a, b, x0_newton)
         x, log = mdl.run()
         self.CenterPane.outp_area.append(log)
         self.resize(500, 549)
-
+        self.resize(500, 550)
         
 if __name__ == "__main__":
     MainThread = QApplication([])
