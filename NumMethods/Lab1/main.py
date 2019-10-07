@@ -10,6 +10,7 @@ nle = 'x^3 + sin(x) - 12x + 1 = 0'
 epsilon = 0.001
 a = -10
 b = 10
+x0_newton = -1
 
 class CenterPanel(QWidget):
     def __init__(self, parent):
@@ -45,6 +46,7 @@ class CenterPanel(QWidget):
         self.btn_method1.setFont(QFont("Times", 12, QFont.Bold))
         self.btn_method1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_method1.setText('Modified Newton\'s')
+        self.btn_method1.clicked.connect(parent.runNewtons)
 
         self.btn_method2 = QPushButton()
         self.btn_method2.setFont(QFont("Times", 12, QFont.Bold))
@@ -85,7 +87,11 @@ class MainWindow(QMainWindow):
         self.CenterPane.outp_area.append(log)
         self.resize(500, 549)
 
-
+    def runNewtons(self):
+        mdl = Modified_Newton(epsilon, a, b, x0_newton)
+        x, log = mdl.run()
+        self.CenterPane.outp_area.append(log)
+        self.resize(500, 549)
 
         
 if __name__ == "__main__":
