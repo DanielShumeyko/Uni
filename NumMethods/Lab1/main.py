@@ -10,7 +10,7 @@ nle = 'x^3 + sin(x) - 12x + 1 = 0'
 epsilon = 0.001
 a = -10
 b = 10
-x0_newton = -1
+x0_newton = -10
 
 class CenterPanel(QWidget):
     def __init__(self, parent):
