@@ -28,7 +28,7 @@ class Modified_Newton:
                 return x, log
 
             if np.absolute(x - x_prev) <= self.eps:
-                log += 'Stop condition met! {} steps completed. \nReturning x = {} \n'.format(i + 1, x)
+                log += 'Stop condition met! {} steps completed. \nReturning x = {} \n'.format(i, x)
                 return x, log
 
             x_prev = x
@@ -57,7 +57,7 @@ class Dichotomy:
             x = (a + b)/2
             log += 'Step {}: a = {}, b = {}, x = {} \n'.format(i, a, b, x)
             if np.absolute(x - x_prev) <= self.eps:
-                log += 'Stop condition met! \n{} steps expected / {} steps completed. \nReturning x = {} \n'.format(self.eval_n(), i + 1, x)
+                log += 'Stop condition met! \n{} steps expected / {} steps completed. \nReturning x = {} \n'.format(self.eval_n(), i, x)
                 return x, log
             x_prev = x
             i += 1
