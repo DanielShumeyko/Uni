@@ -11,8 +11,11 @@ class Square_Roots:
     pass
 
 class Seidel:
-    def __init__(self):
-        pass
+    def __init__(self, A=A, b=b, Eps=Eps, x0=x0):
+        self.A = A
+        self.b =b
+        self.Eps = Eps
+        self.x0 = x0
 
     def run(self):
         counter = 1
