@@ -109,7 +109,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        self.setWindowTitle('Lab 1 / Dynamic Models')
+        self.setWindowTitle('Lab 2 / Dynamic Models')
         self.resize(500, 150)
         self.CenterPane = CenterPanel(self)
 
