@@ -32,7 +32,7 @@ class Seidel:
                 xk = 0
                 for i,item in enumerate(x):
                     xk -= A[k,i]/A[k,k]*item
-                for i, item in enumerate(x_prev[k:]):
+                for i, item in enumerate(x_prev[k+1:]):
                     xk -= A[k,i]/A[k,k]*item
                 xk += b[k]/A[k,k]
                 x.append(round(xk,5))
