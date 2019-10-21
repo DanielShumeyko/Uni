@@ -24,60 +24,76 @@ class CenterPanel(QWidget):
     # Vertical layouts for parameter input
 
         self.label_a1 = QLabel(self)
-        self.label_a1.setText('                    a1')
-        self.label_a1.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_a1.setText('                a1')
+        self.label_a1.setFont(QFont("Times", 10, QFont.Bold))
         self.input_a1 = QLineEdit(self)
         VBox1 = QVBoxLayout()
         VBox1.addWidget(self.label_a1)
         VBox1.addWidget(self.input_a1)
 
         self.label_a2 = QLabel(self)
-        self.label_a2.setText('                    a2')
-        self.label_a2.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_a2.setText('                a2')
+        self.label_a2.setFont(QFont("Times", 10, QFont.Bold))
         self.input_a2 = QLineEdit(self)
         VBox2 = QVBoxLayout()
         VBox2.addWidget(self.label_a2)
         VBox2.addWidget(self.input_a2)
 
         self.label_b = QLabel(self)
-        self.label_b.setText('                    b')
-        self.label_b.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_b.setText('                b')
+        self.label_b.setFont(QFont("Times", 10, QFont.Bold))
         self.input_b = QLineEdit(self)
         VBox3 = QVBoxLayout()
         VBox3.addWidget(self.label_b)
         VBox3.addWidget(self.input_b)
 
         self.label_q = QLabel(self)
-        self.label_q.setText('                    q')
-        self.label_q.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_q.setText('                q')
+        self.label_q.setFont(QFont("Times", 10, QFont.Bold))
         self.input_q = QLineEdit(self)
         VBox4 = QVBoxLayout()
         VBox4.addWidget(self.label_q)
         VBox4.addWidget(self.input_q)
 
         self.label_t = QLabel(self)
-        self.label_t.setText('                    To')
-        self.label_t.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_t.setText('                To')
+        self.label_t.setFont(QFont("Times", 10, QFont.Bold))
         self.input_t = QLineEdit(self)
         VBox5 = QVBoxLayout()
         VBox5.addWidget(self.label_t)
         VBox5.addWidget(self.input_t)
 
         self.label_ko = QLabel(self)
-        self.label_ko.setText('                    ko')
-        self.label_ko.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_ko.setText('                ko')
+        self.label_ko.setFont(QFont("Times", 10, QFont.Bold))
         self.input_ko = QLineEdit(self)
         VBox6 = QVBoxLayout()
         VBox6.addWidget(self.label_ko)
         VBox6.addWidget(self.input_ko)
 
         self.label_xo = QLabel(self)
-        self.label_xo.setText('                    Xo')
-        self.label_xo.setFont(QFont("Times", 8, QFont.Bold))
+        self.label_xo.setText('                Xo')
+        self.label_xo.setFont(QFont("Times", 10, QFont.Bold))
         self.input_xo = QLineEdit(self)
         VBox7 = QVBoxLayout()
         VBox7.addWidget(self.label_xo)
         VBox7.addWidget(self.input_xo)
+
+        self.label_l2 = QLabel(self)
+        self.label_l2.setText('          delta l2')
+        self.label_l2.setFont(QFont("Times", 10, QFont.Bold))
+        self.input_l2 = QLineEdit(self)
+        VBox8 = QVBoxLayout()
+        VBox8.addWidget(self.label_l2)
+        VBox8.addWidget(self.input_l2)
+
+        self.label_l3 = QLabel(self)
+        self.label_l3.setText('          delta l3')
+        self.label_l3.setFont(QFont("Times", 10, QFont.Bold))
+        self.input_l3 = QLineEdit(self)
+        VBox9 = QVBoxLayout()
+        VBox9.addWidget(self.label_l3)
+        VBox9.addWidget(self.input_l3)
 
     # Horizontal Layout 2 for all the inputs
         HBox2 = QHBoxLayout()
@@ -88,6 +104,8 @@ class CenterPanel(QWidget):
         HBox2.addLayout(VBox5)
         HBox2.addLayout(VBox6)
         HBox2.addLayout(VBox7)
+        HBox2.addLayout(VBox8)
+        HBox2.addLayout(VBox9)
 
     # Main Layout
         self.confirm = QPushButton()
@@ -124,6 +142,8 @@ class MainWindow(QMainWindow):
         t = float(self.CenterPane.input_t.text())
         ko = int(self.CenterPane.input_ko.text())
         xo = float(self.CenterPane.input_xo.text())
+        l2 = float(self.CenterPane.input_l2.text())
+        l3 = float(self.CenterPane.input_l3.text())
 
         self.CenterPane.input_a1.clear()
         self.CenterPane.input_a2.clear()
@@ -132,6 +152,8 @@ class MainWindow(QMainWindow):
         self.CenterPane.input_t.clear()
         self.CenterPane.input_ko.clear()
         self.CenterPane.input_xo.clear()
+        self.CenterPane.input_l2.clear()
+        self.CenterPane.input_l3.clear()
         ABOUNDLOW = 1
         ABOUNDHIGH = 10
         QBOUNDLOW = 1
@@ -148,7 +170,7 @@ class MainWindow(QMainWindow):
         elif q > QBOUNDHIGH or q < QBOUNDLOW:
             self.msgOOB('q')
         else:
-            self.LoadModel(a1, a2, b, q, t, ko, xo)
+            self.LoadModel(a1, a2, b, q, t, ko, xo, l2, l3)
 
     def msgOOB(self, error=''):
 
@@ -174,8 +196,8 @@ class MainWindow(QMainWindow):
             
         msg.exec_()
     
-    def LoadModel(self, a1, a2, b, q, t, ko, xo):
-        mdl = DynamicModel(a1, a2, b, q, t, ko, xo)
+    def LoadModel(self, a1, a2, b, q, t, ko, xo, l2, l3):
+        mdl = DynamicModel(a1, a2, b, q, t, ko, xo, l2, l3)
         mdl.printData()
         mdl.runModel()
         
