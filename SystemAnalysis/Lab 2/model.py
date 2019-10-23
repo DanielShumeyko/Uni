@@ -23,6 +23,7 @@ class DynamicModel:
         self.A = np.matrix([[0, 1, 0], [0, 0, 1], [-1, -self.a1, -self.a2]])
         self.B = np.array([[0, 0, self.b]])
         self.C = np.array([1, 0, 0])
+        self.l = np.array([0, 0, 0])
 
     # Runs algorithm, plots results
     def runModel(self):
@@ -54,7 +55,7 @@ class DynamicModel:
         y3.append(x_prev[2])
 
         for _ in range(1, k):
-            x = x_prev.dot(phi) + gamma*u # TODO: Instead of Phi there should be Phi - Gamma*l^T
+            x = x_prev.dot(phi - gamma.dot(self.l)) + gamma*u # TODO: Instead of Phi there should be Phi - Gamma*l^T
             print(x)
             y.append(x.dot(self.C))
             y2.append(x[1])
