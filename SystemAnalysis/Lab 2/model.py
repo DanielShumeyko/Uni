@@ -57,7 +57,7 @@ class DynamicModel:
         y.append(x_prev[0])
         y2.append(x_prev[1])
         y3.append(x_prev[2])
-        print('l:' + str(self.l))
+        print('l:' + str(l))
         print('gamma: ' + str(gamma))
         print('gamma*l: ' + str(gamma.dot(l)) )
         for _ in range(1, k):
@@ -101,16 +101,17 @@ class DynamicModel:
             for item in self.y1:
                 J_prev += np.absolute(item - 1)*self.to
             while True:
-                l[2] = l[2] + self.delta_l3
+                l[2] = l[2] + delta_l3
                 print('changed l: ' + str(l))
                 J = 0
                 self.generateY(l)
                 for item in self.y1:
                     J += np.absolute(item - 1)*self.to
                 print(J)
-                if J - J_prev < 0:
+                if J_prev - J < 0:
                     delta_l3 *= -1
-                if np.absolute(J - J_prev) < 0.0001:
+                    continue
+                if J < 0.1:
                     print("Finished")
                     break
                 J_prev = J
@@ -123,16 +124,17 @@ class DynamicModel:
             for item in self.y1:
                 J_prev += np.absolute(item - 1)*self.to
             while True:
-                l[2] = l[2] + self.delta_l2
+                l[2] = l[2] + delta_l2
                 print('changed l: ' + str(l))
                 J = 0
                 self.generateY(l)
                 for item in self.y1:
                     J += np.absolute(item - 1)*self.to
                 print(J)
-                if J - J_prev < 0:
+                if J_prev - J < 0:
                     delta_l2 *= -1
-                if np.absolute(J - J_prev) < 0.00001:
+                    continue
+                if J < 0.1:
                     print("Finished")
                     break
                 J_prev = J
