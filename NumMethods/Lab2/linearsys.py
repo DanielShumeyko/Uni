@@ -5,10 +5,14 @@ b = np.array([1, 3, 2])
 Eps = 0.001
 x0 = [0, 0, 0]
 
+# TODO: square roots
+# TODO: det
+# TODO: that other thing
 
 
 class Square_Roots:
-    pass
+    def __init__(self):
+        pass
 
 class Seidel:
     def __init__(self, A=A, b=b, Eps=Eps, x0=x0):
