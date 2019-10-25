@@ -28,7 +28,8 @@ class DynamicModel:
     # Runs algorithm, plots results
     def runModel(self):
         sns.set()
-        self.generateY()
+        self.calculate_l()
+        self.generateY(self.l)
         y = self.y1
         x = self.t_range
         axes = plt.axes()
@@ -40,7 +41,10 @@ class DynamicModel:
         plt.show()
 
     # Algorithm core, loads three y arrays into class
-    def generateY(self):
+    def generateY(self, l=np.array([0, 0, 0])):
+        self.y1 = []
+        self.y2 = []
+        self.y3 = []
         phi = np.squeeze(np.array(self.Phi()))
         gamma = np.squeeze(self.Gamma(self.Phi()))
         y = []
@@ -53,10 +57,11 @@ class DynamicModel:
         y.append(x_prev[0])
         y2.append(x_prev[1])
         y3.append(x_prev[2])
-
+        print('l:' + str(self.l))
+        print('gamma: ' + str(gamma))
+        print('gamma*l: ' + str(gamma.dot(l)) )
         for _ in range(1, k):
-            x = x_prev.dot(phi - gamma.dot(self.l)) + gamma*u # TODO: Instead of Phi there should be Phi - Gamma*l^T
-            print(x)
+            x = x_prev.dot(phi - gamma.dot(l)) + gamma*u # TODO: Instead of Phi there should be Phi - Gamma*l^T
             y.append(x.dot(self.C))
             y2.append(x[1])
             y3.append(x[2])
@@ -86,8 +91,54 @@ class DynamicModel:
         return a1.dot(b)
     
     #calculates l for current moment k
-    def calculate_l(self, x):
-        pass
+    def calculate_l(self):
+        delta_l2 = self.delta_l2
+        delta_l3 = self.delta_l3
+        l = np.array([0.0, 0.0, 0])
+        if delta_l2 == 0:
+            self.generateY(l)
+            J_prev = 0
+            for item in self.y1:
+                J_prev += np.absolute(item - 1)*self.to
+            while True:
+                l[2] = l[2] + self.delta_l3
+                print('changed l: ' + str(l))
+                J = 0
+                self.generateY(l)
+                for item in self.y1:
+                    J += np.absolute(item - 1)*self.to
+                print(J)
+                if J - J_prev < 0:
+                    delta_l3 *= -1
+                if np.absolute(J - J_prev) < 0.0001:
+                    print("Finished")
+                    break
+                J_prev = J
+            print('Final l  = ' + str(l))
+            self.l = l
+
+        else:
+            self.generateY(l)
+            J_prev = 0
+            for item in self.y1:
+                J_prev += np.absolute(item - 1)*self.to
+            while True:
+                l[2] = l[2] + self.delta_l2
+                print('changed l: ' + str(l))
+                J = 0
+                self.generateY(l)
+                for item in self.y1:
+                    J += np.absolute(item - 1)*self.to
+                print(J)
+                if J - J_prev < 0:
+                    delta_l2 *= -1
+                if np.absolute(J - J_prev) < 0.00001:
+                    print("Finished")
+                    break
+                J_prev = J
+            print('Final l  = ' + str(l))
+            self.l = l
+            
 
     # for debuging and testing purposes
     def printData(self):
