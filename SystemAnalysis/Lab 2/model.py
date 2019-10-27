@@ -19,7 +19,7 @@ class DynamicModel:
         self.xo = np.array([xo, xo, xo])
         self.delta_l2 = l2
         self.delta_l3 = l3
-        self.t_range = np.arange(0, 10 + self.to, self.to)
+        self.t_range = np.arange(0, 50 + self.to, self.to)
         self.A = np.matrix([[0, 1, 0], [0, 0, 1], [-1, -self.a1, -self.a2]])
         self.B = np.array([[0, 0, self.b]])
         self.C = np.array([1, 0, 0])
@@ -32,12 +32,9 @@ class DynamicModel:
         self.generateY(self.l)
         y = self.y1
         x = self.t_range
-        axes = plt.axes()
-        axes.set_xlim([-0.2, 10.2])
-        axes.set_xticks(np.arange(0, 10.5, 0.5))
         plt.xlabel('t - time')
         plt.ylabel('y(t) - output process')
-        plt.scatter(x, y)
+        plt.plot(x, y)
         plt.show()
 
     # Algorithm core, loads three y arrays into class
@@ -51,7 +48,6 @@ class DynamicModel:
         y2 = []
         y3 = []
         k = len(self.t_range)
-        u = 1
         x = np.array([])
         x_prev = np.squeeze(self.xo)
         y.append(x_prev[0])
@@ -61,7 +57,7 @@ class DynamicModel:
         print('gamma: ' + str(gamma))
         print('gamma*l: ' + str(gamma.dot(l)) )
         for _ in range(1, k):
-            x = x_prev.dot(phi - gamma.dot(l)) + gamma*u # TODO: Instead of Phi there should be Phi - Gamma*l^T
+            x = (phi - gamma.dot(l)).dot(x_prev) + gamma
             y.append(x.dot(self.C))
             y2.append(x[1])
             y3.append(x[2])
@@ -100,46 +96,37 @@ class DynamicModel:
             J_prev = 0
             for item in self.y1:
                 J_prev += np.absolute(item - 1)*self.to
+            l[2] = l[2] + delta_l3
+            J = 0
+            self.generateY(l)
+            for item in self.y1:
+                J += np.absolute(item - 1)*self.to
+            if J > J_prev:
+                l[2] = l[2] - delta_l3
+                delta_l3 *= -1
+            else:
+                J_prev = J
+
             while True:
                 l[2] = l[2] + delta_l3
-                print('changed l: ' + str(l))
                 J = 0
                 self.generateY(l)
                 for item in self.y1:
                     J += np.absolute(item - 1)*self.to
-                print(J)
-                if J_prev - J < 0:
-                    delta_l3 *= -1
-                    continue
-                if J < 0.1:
-                    print("Finished")
+                print( 'resulting J: ' + str(J)  + '\n ---------------------------------------------------')
+                if J > J_prev:
+                    l[2] = l[2] - delta_l3
+                    delta_l3 *= 0.95
+                elif round(J,10) == round(J_prev,10):
                     break
-                J_prev = J
+                
+
+
             print('Final l  = ' + str(l))
             self.l = l
 
         else:
-            self.generateY(l)
-            J_prev = 0
-            for item in self.y1:
-                J_prev += np.absolute(item - 1)*self.to
-            while True:
-                l[2] = l[2] + delta_l2
-                print('changed l: ' + str(l))
-                J = 0
-                self.generateY(l)
-                for item in self.y1:
-                    J += np.absolute(item - 1)*self.to
-                print(J)
-                if J_prev - J < 0:
-                    delta_l2 *= -1
-                    continue
-                if J < 0.1:
-                    print("Finished")
-                    break
-                J_prev = J
-            print('Final l  = ' + str(l))
-            self.l = l
+            pass
             
 
     # for debuging and testing purposes
