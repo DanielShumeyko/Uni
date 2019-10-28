@@ -199,7 +199,6 @@ class MainWindow(QMainWindow):
     
     def LoadModel(self, a1, a2, b, q, t, ko, xo, l2, l3):
         mdl = DynamicModel(a1, a2, b, q, t, ko, xo, l2, l3)
-        mdl.printData()
         mdl.runModel()
         
 if __name__ == "__main__":
@@ -207,5 +206,3 @@ if __name__ == "__main__":
     MainGUI = MainWindow()
     MainGUI.show()
     sysExit(MainThread.exec_())
-
-# Daniel Shumeyko, PS-3
