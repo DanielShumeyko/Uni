@@ -46,6 +46,7 @@ class CenterPanel(QWidget):
         self.btn_method1.setFont(QFont("Times", 12, QFont.Bold))
         self.btn_method1.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_method1.setText('Square Roots')
+        self.btn_method1.clicked.connect(parent.runRoots)
 
 
         self.btn_method2 = QPushButton()
@@ -84,6 +85,13 @@ class MainWindow(QMainWindow):
 
     def runSeidel(self):
         mdl = Seidel()
+        log = mdl.run()
+        self.CenterPane.outp_area.append(log)
+        self.resize(500, 549)
+        self.resize(500, 550)
+
+    def runRoots(self):
+        mdl = Square_Roots()
         log = mdl.run()
         self.CenterPane.outp_area.append(log)
         self.resize(500, 549)
