@@ -38,6 +38,7 @@ class CenterPanel(QWidget):
         VBox2 = QVBoxLayout()
         VBox2.addWidget(self.label_a2)
         VBox2.addWidget(self.input_a2)
+        
 
         self.label_b = QLabel(self)
         self.label_b.setText('                b')
