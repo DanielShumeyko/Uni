@@ -19,7 +19,7 @@ class DynamicModel:
         self.xo = np.array([xo, xo, xo])
         self.delta_l2 = l2
         self.delta_l3 = l3
-        self.t_range = np.arange(0, 50 + self.to, self.to)
+        self.t_range = np.arange(0, 60 + self.to, self.to)
         self.A = np.matrix([[0, 1, 0], [0, 0, 1], [-1, -self.a1, -self.a2]])
         self.B = np.array([[0, 0, self.b]])
         self.C = np.array([1, 0, 0])
@@ -53,9 +53,6 @@ class DynamicModel:
         y.append(x_prev[0])
         y2.append(x_prev[1])
         y3.append(x_prev[2])
-        print('l:' + str(l))
-        print('gamma: ' + str(gamma))
-        print('gamma*l: ' + str(gamma.dot(l)) )
         for _ in range(1, k):
             x = (phi - gamma.dot(l)).dot(x_prev) + gamma
             y.append(x.dot(self.C))
@@ -113,20 +110,45 @@ class DynamicModel:
                 self.generateY(l)
                 for item in self.y1:
                     J += np.absolute(item - 1)*self.to
-                print( 'resulting J: ' + str(J)  + '\n ---------------------------------------------------')
+                print( 'J: ' + str(J)  + '\n ---------------------------------------------------')
                 if J > J_prev:
                     l[2] = l[2] - delta_l3
                     delta_l3 *= 0.95
                 elif round(J,10) == round(J_prev,10):
                     break
-                
-
-
             print('Final l  = ' + str(l))
             self.l = l
 
         else:
-            pass
+            self.generateY(l)
+            J_prev = 0
+            for item in self.y1:
+                J_prev += np.absolute(item - 1)*self.to
+            l[1] = l[1] + delta_l2
+            J = 0
+            self.generateY(l)
+            for item in self.y1:
+                J += np.absolute(item - 1)*self.to
+            if J > J_prev:
+                l[1] = l[1] - delta_l2
+                delta_l2 *= -1
+            else:
+                J_prev = J
+
+            while True:
+                l[1] = l[1] + delta_l2
+                J = 0
+                self.generateY(l)
+                for item in self.y1:
+                    J += np.absolute(item - 1)*self.to
+                print( 'J: ' + str(J)  + '\n ---------------------------------------------------')
+                if J > J_prev:
+                    l[1] = l[1] - delta_l2
+                    delta_l2 *= 0.95
+                elif round(J,10) == round(J_prev,10):
+                    break
+            print('Final l  = ' + str(l))
+            self.l = l
             
 
     # for debuging and testing purposes
