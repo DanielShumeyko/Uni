@@ -83,7 +83,7 @@ class DynamicModel:
         b = np.squeeze(np.array(self.B))
         return a1.dot(b)
     
-    #calculates l for current moment k
+    #calculates l by minimizing J. A lot of duplicate and spaghetti code in this function, yikes. TODO: clean
     def calculate_l(self):
         delta_l2 = self.delta_l2
         delta_l3 = self.delta_l3
@@ -149,16 +149,3 @@ class DynamicModel:
                     break
             print('Final l  = ' + str(l))
             self.l = l
-            
-
-    # for debuging and testing purposes
-    def printData(self):
-        print('A ', self.A)
-        print('B ', self.B)
-        print('C ', self.C)
-        print('T ', self.t_range)
-        phi = self.Phi()
-        print('Phi ', phi)
-        print('Gamma ', self.Gamma(phi))
-
-# Daniel Shumeyko, PS-3
