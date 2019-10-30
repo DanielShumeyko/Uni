@@ -110,6 +110,7 @@ class DynamicModel:
                 if J > J_prev:
                     l[2] = l[2] - delta_l3
                     delta_l3 *= 0.95
+                    continue
                 elif round(J,10) == round(J_prev,10):
                     break
                 J_prev = J
@@ -132,6 +133,7 @@ class DynamicModel:
                 if J > J_prev:
                     l[1] = l[1] - delta_l2
                     delta_l2 *= 0.95
+                    continue
                 elif round(J,10) == round(J_prev,10):
                     break
                 J_prev = J
