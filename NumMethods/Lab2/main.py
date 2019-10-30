@@ -12,6 +12,9 @@ b = np.array([1, 3, 2])
 Eps = 0.001
 x0 = [0, 0, 0]
 
+A_sr =np.array([[1, 2, 3],[2, 5, 5],[3, 5, 6]])
+b_sr = np.array([1, 3, 2])
+
 class CenterPanel(QWidget):
     def __init__(self, parent):
         QWidget.__init__(self)

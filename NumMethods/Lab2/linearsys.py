@@ -8,11 +8,6 @@ x0 = [0, 0, 0]
 A_sr =np.array([[1, 2, 3],[2, 5, 5],[3, 5, 6]])
 b_sr = np.array([1, 3, 2])
 
-
-# TODO: square roots
-# TODO: det
-# TODO: that other thing
-
 # the definition of bruteforcing and harcoding, scaling isn't even an option, but hey, it works
 class Square_Roots:
     def __init__(self):
