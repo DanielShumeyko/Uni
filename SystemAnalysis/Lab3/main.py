@@ -112,7 +112,6 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Lab 1 / Dynamic Models')
         self.resize(500, 150)
         self.CenterPane = CenterPanel(self)
-
         self.setCentralWidget(self.CenterPane)
         self.setStyle(QStyleFactory.create('Cleanlooks'))
 
