@@ -56,7 +56,7 @@ class DynamicModel:
         y3.append(x_prev[2])
 
         for _ in range(1, k):
-            x = x_prev.dot(phi) + gamma*u
+            x = phi.dot(x_prev) + gamma*u
             print(x)
             y.append(x.dot(self.C))
             y2.append(x[1])
