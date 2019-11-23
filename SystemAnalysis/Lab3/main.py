@@ -175,7 +175,6 @@ class MainWindow(QMainWindow):
     
     def LoadModel(self, a1, a2, b, q, t, ko, xo):
         mdl = DynamicModel(a1, a2, b, q, t, ko, xo)
-        mdl.printData()
         mdl.runModel()
         
 if __name__ == "__main__":
