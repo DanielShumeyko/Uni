@@ -64,7 +64,7 @@ class CenterPanel(QWidget):
         VBox5.addWidget(self.input_t)
 
         self.label_ko = QLabel(self)
-        self.label_ko.setText('                    ko')
+        self.label_ko.setText('                    U')
         self.label_ko.setFont(QFont("Times", 8, QFont.Bold))
         self.input_ko = QLineEdit(self)
         VBox6 = QVBoxLayout()
@@ -112,7 +112,6 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Lab 1 / Dynamic Models')
         self.resize(500, 150)
         self.CenterPane = CenterPanel(self)
-
         self.setCentralWidget(self.CenterPane)
         self.setStyle(QStyleFactory.create('Cleanlooks'))
 
@@ -176,7 +175,6 @@ class MainWindow(QMainWindow):
     
     def LoadModel(self, a1, a2, b, q, t, ko, xo):
         mdl = DynamicModel(a1, a2, b, q, t, ko, xo)
-        mdl.printData()
         mdl.runModel()
         
 if __name__ == "__main__":
