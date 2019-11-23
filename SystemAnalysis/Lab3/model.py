@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-x_final = np.array([5, 0, 0])
+x_final = np.array([2, 0, 0])
 class DynamicModel:
     def __init__(self, a1, a2, b, q, t, ko, xo):
         self.changeData(a1, a2, b, q, t, ko, xo)
@@ -36,7 +36,6 @@ class DynamicModel:
         plt.plot(x, self.y2, c='red')
         plt.plot(x, self.y3, c='green')
         plt.plot(x, self.uk, c='yellow')
-        plt.legend(['x1', 'x2', 'x3', 'u(k)'], loc=4)
         plt.show()
 
     # Algorithm core, loads three y arrays into class
