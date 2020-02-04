@@ -126,3 +126,14 @@ class DynamicModel:
             P = np.dot(phi_inv, P_prev)
             P_prev = P
         return np.dot(P,gamma)
+
+
+a1 = 1
+a2 = 3
+b = 1
+q = 10
+ko = 110
+t = 0.05
+xo = 0
+mdl = DynamicModel(a1, a2, b, q, t, ko, xo)
+mdl.runModel()

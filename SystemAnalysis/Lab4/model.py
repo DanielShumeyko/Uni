@@ -92,3 +92,13 @@ class DynamicModel:
     # calculates Gamma to use in main formula, needs Phi
     def Gamma(self, phi):
         return np.dot(np.dot((phi - np.identity(3)), np.linalg.inv(self.A)),self.B)
+
+a1 = 1
+a2 = 3
+b = 1
+q = 10
+u = 2
+t = 0.05
+xo = 0
+mdl = DynamicModel(a1, a2, b, q, t, u, xo)
+mdl.runModel()
