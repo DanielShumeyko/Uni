@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>808</width>
+    <height>379</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Sylfaen</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="VBox_main">
+      <item>
+       <layout class="QVBoxLayout" name="VBox_decks">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <family>Sylfaen</family>
+            <pointsize>16</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Select Deck</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="HBox_deckselect" stretch="6,2,2">
+          <item>
+           <widget class="QComboBox" name="combo_selectdeck">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <item>
+             <property name="text">
+              <string> Fiora \ Shen OTK</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_deckadd">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_deckdel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="HBox_input" stretch="2,2,5">
+        <item>
+         <layout class="QVBoxLayout" name="VBox_winloss" stretch="5,2,2">
+          <item>
+           <widget class="QLabel" name="label_winloss">
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>28</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>VICTORY</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_win">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Victory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_loss">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Defeat</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="VBox_regions" stretch="5,2,2">
+          <item>
+           <widget class="QLabel" name="label_regions">
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>28</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>REGIONS</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="combo_region1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>Shadow Isles</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Demacia</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Noxus</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Piltover &amp; Zaun</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ionia</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Freljord</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="combo_region2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>Freljord</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Shadow Isles</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Demacia</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Noxus</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Piltover &amp; Zaun</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ionia</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="VBox_champs" stretch="1,8,1">
+          <item>
+           <widget class="QLabel" name="label_champs">
+            <property name="font">
+             <font>
+              <family>Sylfaen</family>
+              <pointsize>28</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>CHAMPS</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="list_champs">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <item>
+             <property name="text">
+              <string>Braum</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tryndamere</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Thresh</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Kalista</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="HBox_addchamps">
+            <item>
+             <widget class="QPushButton" name="btn_addchamp">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_delchamp">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Delete</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>808</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
