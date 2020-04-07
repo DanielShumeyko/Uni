@@ -8,11 +8,10 @@ y = np.arange(0,21,1)
 x = np.cumsum(np.random.exponential(2,21))
 
 sns.set()
-plt.step(x,y, c='r')
+plt.step(x,y, c='magenta')
 plt.show()
 
 # Here we calculate the mean value for t = 10
-
 samples = []
 for _ in range(100):
     x = np.cumsum(np.random.exponential(2,21))
