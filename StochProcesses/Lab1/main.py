@@ -4,8 +4,8 @@ import seaborn as sns
 
 
 # Create a sample and plot sample path
-y = np.arange(0,21,1)
-x = np.cumsum(np.random.exponential(2,21))
+x = np.arange(0,21,1)
+y = np.cumsum(np.random.exponential(2,21))
 
 sns.set()
 plt.step(x,y, c='magenta')
