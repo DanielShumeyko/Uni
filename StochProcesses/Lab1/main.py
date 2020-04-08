@@ -1,3 +1,4 @@
+# Daniel Shumeyko \\ Applied Statistics 
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -23,4 +24,5 @@ for _ in range(100):
     samples.append(x[9])
 mean = np.mean(samples)
 print('Mean for t=10 is ' + str(mean))
+print('Program done by Daniel Shumeyko    ˙ ͜ʟ˙')
 
