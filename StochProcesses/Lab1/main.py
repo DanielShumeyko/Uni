@@ -4,8 +4,8 @@ import seaborn as sns
 
 
 # Create a sample and plot sample path
-x = np.arange(0,21,1)
-y = np.cumsum(np.random.exponential(2,21))
+x = np.arange(0,20,1)
+y = np.cumsum(np.random.exponential(2,20)) # IMPORTANT Parameter Lambda here is actually 0.5 but we pass parameter beta which = 1/lambda
 
 sns.set()
 plt.step(x,y, c='magenta')
