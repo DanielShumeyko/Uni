@@ -19,18 +19,22 @@ plt.show()
 
 # Here we calculate the mean value for t = 10
 samples = []
-for _ in range(100):
+occurences = 0
+for _ in range(1000000):
+    passed = 0
     x = np.cumsum(np.random.exponential(0.5,40))
     for i, item in enumerate(x):
+        if item > 3:
+            if y[i-1] == 6:
+                passed += 1
         if item > 10:
-            samples.append(y[i-1])
-            break
+            if y[i-1] == 18:
+                passed += 1
+        if item > 15:
+            if y[i-1] > 28:
+                passed += 1
+    if passed == 3:
+        occurences +=1
 
-
-
-
-mean = np.mean(samples)
-print(samples)
-print('Mean for t=10 is ' + str(mean))
+print("The probablity of N(3)=6, N(10) = 18, N(15) > 28 is " + str(occurences/1000000))
 print('Program done by Daniel Shumeyko    ˙ ͜ʟ˙ ')
-
