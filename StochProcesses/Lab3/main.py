@@ -33,7 +33,44 @@ def plot_process(process):
     plt.suptitle('Nonhomogenous Pоisson Process', fontsize=25)
     plt.show()
 
+def calc_properties(): # calculates mean, var, cov for t = 14
+    samples = []
+    samples2 = []
+    for _ in range(100):
+        x = simulate()
+        y = np.arange(0, len(x))
+    
+        for i, item in enumerate(x): #find first element greater than 14 and pass index of previous element to samples
+            if item > 14:
+                samples.append(y[i-1])
+                break
+
+        for i, item in enumerate(x): #find first element greater than 17 and pass index of previous element to samples2
+            if item > 17:
+                samples2.append(y[i-1])
+                break
+    # here numpy functions for calculating var and cov should be used, but for the sake of the assignment I do it manually here
+    mean = np.mean(samples)
+
+    var = np.mean([ (x - mean)**2 for x in samples])
+
+    mean2 = np.mean(samples2)
+    sum = 0
+    for i in range(len(samples)):
+        sum += ((samples[i] - mean)*(samples2[i] - mean2))
+    cov = sum/(len(samples)-1)
+
+    return [mean, var, cov]
+
+
+
+
 
 if __name__ == "__main__":
     plot_process(simulate())  
-
+    properties = calc_properties()
+    print('For t = 14: ')
+    print('Mean is ' + str(properties[0]))
+    print('Variance is ' + str(properties[1]))
+    print('Covariance for N(14) and N(17) is ' + str(properties[2]))
+    print('')
