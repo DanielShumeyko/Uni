@@ -58,7 +58,7 @@ def calc_properties(): # calculates mean, var, cov for t = 14
     sum = 0
     for i in range(len(samples)):
         sum += ((samples[i] - mean)*(samples2[i] - mean2))
-    cov = sum/(len(samples)-1)
+    cov = sum/(len(samples))
 
     return [mean, var, cov]
 
