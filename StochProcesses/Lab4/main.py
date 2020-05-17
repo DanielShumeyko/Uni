@@ -1,4 +1,4 @@
-# Daniel Shumeyko \\ Applied Statistics 
+# Daniel Shumeyko \ \ Applied Statistics 
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
