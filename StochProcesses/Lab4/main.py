@@ -19,7 +19,7 @@ def Monte_Carlo():
         vecSpent.append( sum( np.random.uniform(5, 95, p)))
     mean, var, prob = Calc_Properties(vecPois, vecSpent)
     
-    print("Completed 10 000 iterations. \nMean: " + str(mean) + "\nVariance: " + str(var) + "\nStandart devation: " + str(np.sqrt(var)) + "\nProbability of more than " + str(2000*m) + " being spent: " + str(prob) )
+    print("Completed 10 000 iterations. \nMean: " + str(mean) + "\nVariance: " + str(var) + "\nStandard devation: " + str(np.sqrt(var)) + "\nProbability of more than " + str(2000*m) + " being spent: " + str(prob) )
 
 
 def Calc_Properties(vecPois, vecSpent):
@@ -39,7 +39,7 @@ def DrawPlot():
         y.append( y[-1] + np.random.exponential(1/25))
     x = np.cumsum(np.random.uniform(5, 95, len(y)))
     sns.set()
-    plt.plot(x,y, c='magenta')
+    plt.step(x,y, c='magenta')
     plt.xlabel('Amount Spent')
     plt.ylabel('Time')
     plt.suptitle('Compound Pоisson Process', fontsize=25)
