@@ -9,18 +9,20 @@ n = 1000 # how many steps we take per 1 unit of time. So for t=[0,1] we do this 
 sig = 1
 
 
-def Brownian_Donsker(limit):
+def Brownian_Donsker(time):
     process = [0]
-    for k in range(n*limit):
-        process.append(process[-1] + np.random.normal(0, 1)*np.sqrt(k/(n*limit))) # here we use the fact that random walk divided by square root of it's current number of steps converges to N(0,1)
-    x = np.arange(0,limit+1/n, 1/n)                                               # so Yk/sigma*sqrt(n) = Yk*sqrt(k)/sigma*sqrt(n*k) = N(0,1)*sqrt(k)/sigma*sqrt(n)
+    bot = np.sqrt(time*n)
+    for k in range(n*time):
+        process.append(process[-1] + np.random.normal(0, 1)*np.sqrt(k)/bot) # here we use the fact that random walk divided by square root of it's current number of steps converges to N(0,1)
+    x = np.arange(0,time+1/n, 1/n)                                               # so Yk/sigma*sqrt(n) = Yk*sqrt(k)/sigma*sqrt(n*k) = N(0,1)*sqrt(k)/sigma*sqrt(n)
     return process, x
 
-def Brownian_Levi(limit):
+def Brownian_Levi(time):
     process = [0]
-    for k in range(n*limit):
-        process.append(process[-1] + np.random.normal(0, k/(n*limit)))
-    x = np.arange(0,limit+1/n, 1/n)
+    total_time = n*time
+    for k in range(n*time):
+        process.append(process[-1] + np.random.normal(0, k/total_time))
+    x = np.arange(0,time+1/n, 1/n)
     return process, x
 
 def plot_one():
@@ -31,6 +33,7 @@ def plot_one():
     plt.plot(x2,y2, c='#1d6f72')
     plt.xlabel('time')
     plt.ylabel('W(t)')
+    plt.legend(['Donsker theorem', 'Levi simulation'], loc=2)
     plt.suptitle('Brownian Motion', fontsize=25)
     plt.show()
 
@@ -41,22 +44,23 @@ def plot_two(): #check that plot lies within boundaries
     y2 = [-np.sqrt(2*t * np.log(np.log(t))) for t in x]
     sns.set()
     plt.plot(x,y1, c='#1d6f72')
-    plt.plot(x,y2, c='#1d6f72')    
+    plt.plot(x,y2, c='#1d6f72') 
     plt.xlabel('time')
     plt.ylabel('W(t)')
-    plt.suptitle('Brownian Motion', fontsize=25)
+    plt.legend(['Levi simulation', 'Boundaries +- sqrt(2t*ln(ln(t))'], loc=2)
+    plt.suptitle('Law of the iterated logarithm ', fontsize=25)
     plt.show()    
 
 def plot_three():
     y, x = Brownian_Levi(1)
-    a = 3
-    b = 5
+    a = 4
+    b = 15
     y1 = [(a*t + b*W) for t, W  in zip(x, y)]
     sns.set()
     plt.plot(x,y1, c='#1d6f72')  
     plt.xlabel('time')
     plt.ylabel('W(t)')
-    plt.suptitle('Brownian Motion', fontsize=25)
+    plt.suptitle('BM as a*t + b*W(t), a=' + str(a) + ' b=' + str(b), fontsize=25)
     plt.show()    
 
 plot_one()
