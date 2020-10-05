@@ -9,7 +9,7 @@ n = 1000 # how many steps we take per 1 unit of time. So for t=[0,1] we do this 
 sig = 1
 
 
-def Brownian_Donsker(time):
+def Brownian_Donsker(time, n):
     process = [0]
     bot = np.sqrt(time*n)
     for k in range(n*time):
@@ -17,7 +17,7 @@ def Brownian_Donsker(time):
     x = np.arange(0,time+1/n, 1/n)                                               # so Yk/sigma*sqrt(n) = Yk*sqrt(k)/sigma*sqrt(n*k) = N(0,1)*sqrt(k)/sigma*sqrt(n)
     return process, x
 
-def Brownian_Levi(time):
+def Brownian_Levi(time, n):
     process = [0]
     total_time = n*time
     for k in range(n*time):
@@ -26,8 +26,8 @@ def Brownian_Levi(time):
     return process, x
 
 def plot_one():
-    y1, x1 = Brownian_Donsker(1)
-    y2, x2 = Brownian_Levi(1)
+    y1, x1 = Brownian_Donsker(1, n)
+    y2, x2 = Brownian_Levi(1, n)
     sns.set()
     plt.plot(x1,y1, c='#7a0505')
     plt.plot(x2,y2, c='#1d6f72')
@@ -38,7 +38,7 @@ def plot_one():
     plt.show()
 
 def plot_two(): #check that plot lies within boundaries
-    y, x = Brownian_Levi(1000)
+    y, x = Brownian_Levi(1000, 100)
     plt.plot(x,y, c='#7a0505')
     y1 = [np.sqrt(2*t * np.log(np.log(t))) for t in x]
     y2 = [-np.sqrt(2*t * np.log(np.log(t))) for t in x]
@@ -52,7 +52,7 @@ def plot_two(): #check that plot lies within boundaries
     plt.show()    
 
 def plot_three():
-    y, x = Brownian_Levi(1)
+    y, x = Brownian_Levi(1, n)
     a = 4
     b = 15
     y1 = [(a*t + b*W) for t, W  in zip(x, y)]
