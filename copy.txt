@@ -1,0 +1,55 @@
++=- - operator
+-g - unknown token - incorrect operator
++-4 - unknown token - incorrect operator
+** - operator
+*- - operator
+*== - operator
+34 - decimal number
+0B - hexadecimal number
+94j - unknown token - incorrect number
+{393* - unknown token - bad divider
+*33 - unknown token - incorrect operator
+FFFFF - hexadecimal number
+ABABA8A - hexadecimal number
+} - dividing symbol(s)
+10.3 - float
+1B.4 - unknown token - incorrect hexadecimal
+394.94A - unknown token - incorrect float
+ - unknown token - unknown symbol
+#hello how are you doing today :) - comment
+ - unknown token - unknown symbol
+what - identifier
+is - reserved word
+up - identifier
+aaaa - hexadecimal number
+aaand - identifier
+ok - identifier
+ABA - hexadecimal number
+AB34 - hexadecimal number
+AABuhf_jffj - identifier
+AAhh_hhhh` - unknown token - unknown symbol
+for - reserved word
+if - reserved word
+True - reserved word
+" how u doin " - String constant
+@ - unknown token - unknown symbol
+9481-8 - unknown token - incorrect number
+#2@`349230-94 :) - comment
+'hellow' - String constant
+"tthis is  astr" - String constant
+'dfieife'eifie - unknown token - expected end of str
+'   '' - unknown token - expected end of str
+"fe" - String constant
+" " - String constant
+'
+' - String constant
+else - reserved word
+True - reserved word
+True_False - identifier
+if - reserved word
+import - reserved word
+imprort - identifier
+0for - unknown token - incorrect hexadecimal
+030oeee - unknown token - incorrect number
+oeoe093ei30ie30iie0i3e0e3i - identifier
+aa333b - hexadecimal number
