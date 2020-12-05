@@ -251,4 +251,4 @@ def analyse_code():
 
 #C:\dev\Lang\Lab3\test.txt
 #C:\dev\Lang\Lab3\test2.txt
-analyse_code()
+analyse_code() # Danylo Shumeyko PS-4

@@ -1,9 +1,6 @@
 import multiprocessing as mp
 import time 
 
-to_replace = 'az'
-replace_with = '{[]}'
-
 
 def customer_wait(lock, start_time, seats_open, id, waiting_list):
     lock.acquire()
@@ -19,7 +16,6 @@ def customer_wait(lock, start_time, seats_open, id, waiting_list):
             lock.release()
             break
         lock.release()
-        #time.sleep(1)
     lock.acquire()
     print(f'Customer {id} is now waiting inside.There are {seats_open.value} open seats. Waiting list: {waiting_list}')
     lock.release()
@@ -45,11 +41,11 @@ def barber(lock, start_time, seats_open, customers_left, waiting_list, speed):
     print('BARBER HAS FINISHED WORKING')
 
 
-def main():
+def main(): #here we use a main method to correctly enclose all processes inside __main__
     start = time.perf_counter()
-    OPEN_SEATS = 5
-    BARBER_SPEED = 0.2
-    NUMBER_OF_CUSTOMERS = 100
+    OPEN_SEATS = 5 # How many seats in the barbershops waiting room?
+    BARBER_SPEED = 0.2 # How fast (in seconds) does the barber serve 1 client?
+    NUMBER_OF_CUSTOMERS = 100 # How many clients today?
     processes = []
 
     lock = mp.Lock()
@@ -73,5 +69,5 @@ def main():
     finish = time.perf_counter()
     print(f'Finished in {round(finish-start, 4)} second(s)')
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
